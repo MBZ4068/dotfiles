@@ -1,0 +1,65 @@
+#记录命令 免得忘记
+
+
+rsync | 镜像 备份 复制 同步 | rsync -av --delete /源目录/ /目标目录/
+
+核心语法：
+rsync [选项] 源目录/ 目标目录/
+
+关键选项：
+-a  归档模式（保留权限、时间等）
+-v  显示详细过程（-vv 更详细）
+--delete  删除目标中源没有的文件（实现“镜像”效果）
+-n  演习模式（实际不执行，用于预览）
+--exclude='*.log'  排除特定文件
+
+常用镜像同步（会删目标多余文件）：
+rsync -av --delete /src/ /dest/
+
+安全预览（先看会删哪些）：
+rsync -av --delete --dry-run /src/ /dest/
+
+注意：源路径末尾的斜杠 / 表示同步目录内容；不加斜杠则会同步目录本身。
+
+
+grep | 字符 查询 过滤 搜索 | grep -A 行数 字符串 文件名
+
+基本语法：
+grep [选项] "模式" 文件
+
+常用选项：
+-i  忽略大小写      		-r  递归搜索目录
+-n  显示行号        		-v  反向匹配（显示不包含模式的行）
+-A 3  显示匹配行及后面3行   -B 2  显示匹配行及前面2行
+-C 2  显示匹配行前后各2行
+示例：
+grep "error" log.txt          # 搜索文件中的error
+grep -r "TODO" ~/projects/    # 递归搜索目录
+grep -A 2 "### rsync" commands.txt   # 显示条目及后2行
+
+支持正则表达式：
+grep "^start" file            # 以start开头的行
+grep "end$" file              # 以end结尾的行
+
+
+yadm dotfiles 配置 仓库  
+yadm 是一个极简的 dotfiles 管理工具，本质是 Git 的封装器（Git wrapper），专门优化 $HOME 作为工作区的场景。
+
+原生原位管理：直接在家目录下 yadm add .bashrc，无需符号链接或移动文件。
+
+自动处理冲突：yadm clone 一条命令完成克隆+部署，自动备份已存在的系统文件。
+
+支持加密文件：通过 yadm encrypt / yadm decrypt 安全存储 SSH 私钥、API token 等敏感信息。
+
+主机差异化配置：使用 yadm alternate，根据主机名、OS 等自动选择正确版本的配置文件（例如 .bashrc##work、.bashrc##home）。
+
+引导脚本：可创建 bootstrap 脚本，在新机器上自动安装软件包、设置 shell 环境。
+
+日常命令与 Git 完全一致：yadm status、yadm push/pull、yadm commit。零学习成本。
+
+一句话：yadm = 裸 Git 仓库 + 冲突处理 + 加密 + 主机模板 —— 专为点文件管理设计。
+
+
+
+
+

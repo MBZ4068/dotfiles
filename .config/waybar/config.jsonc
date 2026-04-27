@@ -1,0 +1,43 @@
+{
+	
+    // 全局 bar 设置
+    "layer": "top",                 // 显示在顶层，不会被窗口遮挡
+    "position": "top",             // top 顶栏 / bottom 底栏
+    "height": 30,                  // 栏高度，单位像素
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+
+    // 如果你想 bar 和屏幕边缘之间有间距，可以给 margin 设置值，比如 "margin-top": 10
+
+    // 三个区域模块：left / center / right
+    "modules-left": ["niri/workspaces"],
+    "modules-center": ["custom/arch","clock"],
+    "modules-right": ["tray"],
+
+    // 模块详细定义
+    "niri/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": false
+    },
+
+	"custom/arch":{
+		"exec": "echo ",	
+		"interval": "once",
+		"format": "{}",
+		"on-click": "kitty -e zsh -c 'fastfetch;exec zsh' ",
+		"on-click-right": "fuzzel",
+		"tooltip": "Arch Linux"
+
+	},
+    "clock": {
+        "format": "{:%H:%M}",      // 24小时制 “小时:分钟”
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{:%A, %d %b %Y}</small></tt>"
+    },
+
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
+}
