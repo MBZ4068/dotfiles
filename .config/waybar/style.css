@@ -1,4 +1,4 @@
-/* 全局重置，确保干净 */
+/* w 全局重置，确保干净 */
 * {
     border: none;
     border-radius: 0;
@@ -13,11 +13,36 @@ window#waybar {
     color: #ffffff;
 }
 
-/* Arch 图标：放大、居中、独立 */
+#custom-date {
+    color: #ffffff;
+    padding: 0 2px;
+    margin: 2px 0;
+}
+
 #custom-arch {
-	color:#87CEEb;
-    font-size: 24px;
+    color: #87CEEB;
+    font-size: 30px;
+	padding-right: 11px;
+	margin: 3px 0; 
+}
+
+
+#clock {
+    color: #ffffff;
+    padding: 0px 8px;
+    margin: 3px 0;
+}
+
+#custom-network {
+    color: #ffffff;
     padding: 0 10px;
-    margin: 0 10px;
-    min-width: 30px;
+    margin: 3px 0;
+    min-width: 40px;
+}
+
+#cava {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
 }

@@ -13,31 +13,68 @@
 
     // 三个区域模块：left / center / right
     "modules-left": ["niri/workspaces"],
-    "modules-center": ["custom/arch","clock"],
+    "modules-center": ["cava","custom/date","custom/arch","clock","custom/network"],
+//	"modules-center": ["custom/arch"],
     "modules-right": ["tray"],
-
+	"fixed-center": true,
     // 模块详细定义
     "niri/workspaces": {
         "disable-scroll": true,
         "all-outputs": false
     },
 
+    "custom/date": {
+        "exec": "date '+%y-%-m-%-d'",
+        "interval": 60,
+        "format": "{}"
+    },
+
 	"custom/arch":{
-		"exec": "echo ",	
-		"interval": "once",
-		"format": "{}",
+		"format": "",
 		"on-click": "kitty -e zsh -c 'fastfetch;exec zsh' ",
 		"on-click-right": "fuzzel",
-		"tooltip": "Arch Linux"
+		"tooltip": "Arch Linux",
+		"align": "center"
 
 	},
     "clock": {
-        "format": "{:%H:%M}",      // 24小时制 “小时:分钟”
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{:%A, %d %b %Y}</small></tt>"
+        "format": "{0:%H:%M}",
+        "tooltip-format": "<big>{0:%Y %B}</big>\n<tt><small>{0:%A, %d %b %Y}</small></tt>"
+    },
+
+    "custom/network": {
+        "exec": "~/.config/waybar/network-speed.sh",
+        "interval": 2,
+        "format": "{}"
     },
 
     "tray": {
         "icon-size": 21,
         "spacing": 10
+    },
+ "cava": {
+        // "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+        "framerate": 30,
+        "autosens": 0,
+        "sensitivity": 1,
+        "bars": 18,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "hide_on_silence": false,
+        // "format_silent": "quiet",
+        "method": "pulse",
+        "source": "auto",
+        "stereo": true,
+        "reverse": false,
+        "bar_delimiter": 0,
+        "monstercat": false,
+        "waves": false,
+        "noise_reduction": 0.77,
+        "input_delay": 0,
+        "format-icons": [" "," ","▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "actions": {
+                   "on-click-right": "mode"
+                   }
     }
 }
+
