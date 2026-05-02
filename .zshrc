@@ -1,5 +1,7 @@
 # --- 基础选项 ---
 # 设置历史记录
+
+export EDITOR=vim
 HISTSIZE=5000                # 内存中保留的历史命令数
 SAVEHIST=5000                # 保存到文件的历史命令数
 HISTFILE=~/.zsh_history      # 历史文件路径
@@ -7,7 +9,7 @@ setopt APPEND_HISTORY        # 允许多个终端会话都追加到同一个历�
 setopt SHARE_HISTORY         # 实时共享历史记录
 setopt HIST_IGNORE_DUPS      # 忽略连续的重复命令
 setopt HIST_IGNORE_SPACE     # 忽略以空格开头的命令（不会记录到历史）
-
+export KEYTIMEOUT=50   		#设置键盘延迟
 # --- 启用强大的补全系统（zsh 自带）---
 autoload -Uz compinit
 compinit
@@ -56,10 +58,11 @@ alias grep='grep --color=auto'
 
 # --- Vi 模式 (等价于 set -o vi) ---
 bindkey -v                    # 启用 Vi 模式
-
 # 映射 "jj" 和 "JJ" 从插入模式退出到命令模式
 bindkey -M viins 'jj' vi-cmd-mode
 bindkey -M viins 'JJ' vi-cmd-mode
+bindkey -M vicmd '/' history-incremental-search-forward
+bindkey -M vicmd '?' history-incremental-search-backward
 
 # - 插入模式：绿色 [插入] + 竖线光标
 # - 命令模式：红色 [命令] + 方块光标
@@ -69,11 +72,11 @@ function zle-keymap-select {
     if [[ $KEYMAP == vicmd ]]; then
         # 命令模式：红色提示 + 方块光标
         echo -ne '\e[2 q'
-        PROMPT="%{$fg[red]%}[命令]%{$reset_color%} [%n@%m %1~]%# "
+        PROMPT="%{$fg[red]%}[N]%{$reset_color%} [%n@%m %1~]%# "
     else
         # 插入模式：绿色提示 + 竖线光标
         echo -ne '\e[6 q'
-        PROMPT="%{$fg[green]%}[插入]%{$reset_color%} [%n@%m %1~]%# "
+        PROMPT="%{$fg[green]%}[I]%{$reset_color%} [%n@%m %1~]%# "
     fi
     zle reset-prompt
 }
@@ -93,3 +96,5 @@ autoload -Uz colors && colors
 # 默认先设置为插入模式的提示符（防止初次启动无显示）
 PROMPT="%{$fg[green]%}[插入]%{$reset_color%} [%n@%m %1~]%# "
 
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"

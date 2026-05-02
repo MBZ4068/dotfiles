@@ -1,43 +1,48 @@
-/* w 全局重置，确保干净 */
+@import "theme.css";
+
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "JetBrains Mono Nerd Font", "Font Awesome 6 Free", sans-serif;
-    font-size: 14px;
-    min-height: 0;
+	all: initial; /* Reset GTK theme */
+	color: @main-fg;
 }
 
-/* Bar 本身半透明，不抢视觉 */
-window#waybar {
-    background-color: rgba(0, 0, 0, 0.4);
-    color: #ffffff;
+@import "styles/fonts.css";
+@import "styles/modules-center.css";
+@import "styles/modules-left.css";
+@import "styles/modules-right.css";
+@import "styles/states.css";
+
+.module {
+	margin-bottom: -1px;
 }
 
-#custom-date {
-    color: #ffffff;
-    padding: 0 2px;
-    margin: 2px 0;
+#waybar {
+	background-color: @outline;
+}
+#waybar > box {
+	margin: 4px;
+	background-color: @main-bg;
+}
+#tray{
+	
+	padding: 0 2px;
 }
 
-#custom-arch {
-    color: #87CEEB;
-    font-size: 30px;
-	padding-right: 11px;
-	margin: 3px 0; 
+button {
+	border-radius: 16px;
+	min-width: 16px;
+	padding: 0 10px;
+}
+button:hover {
+	background-color: @hover-bg;
+	color: @hover-fg;
 }
 
-
-#clock {
-    color: #ffffff;
-    padding: 0px 8px;
-    margin: 3px 0;
+tooltip {
+	border: 2px solid @main-br;
+	border-radius: 10px;
+	background-color: @main-bg;
 }
-
-#custom-network {
-    color: #ffffff;
-    padding: 0 10px;
-    margin: 3px 0;
-    min-width: 40px;
+tooltip > box {
+	padding: 0 6px;
 }
-
 

@@ -256,7 +256,13 @@ spawn-at-startup "waybar"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "mako"
 spawn-at-startup "swww-deamon"
+// 启动时恢复 Waypaper 设置的壁纸
+spawn-at-startup "waypaper" "--restore"
 
+layer-rule {
+    match namespace="^(swww-daemon|wallpaper)$"
+    place-within-backdrop true
+}
 // 要运行 shell 命令（包含变量、管道等），请使用 spawn-sh-at-startup：
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
