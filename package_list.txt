@@ -1,0 +1,24 @@
+
+# niri
+wayber
+-cava
+swww|waypaper
+fuzzle
+mako
+kitty
+# zsh
+zsh-autosuggestions 
+zsh-syntax-highlighting 
+zsh-completions
+zimfw(curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh)
+autojump
+# vim
+nodejs 
+yarn
+clang 
+pyright 
+lua-language-server
+bash-language-server
+npm
+-vim-language-server
+
