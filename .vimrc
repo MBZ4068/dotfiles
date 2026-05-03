@@ -6,12 +6,13 @@ syntax on
 let g:plug_dir= expand('~/vim-plugins/plugged')
 if !isdirectory(g:plug_dir)
   call mkdir (g:plug_dir, 'p')
-  echo "创建了插件文件夹：" . g:plug_dir
+  echo "创建了插件文件夹：" . g:plug_dir  
 endif 
 set termguicolors
 " 插件列表开始，可指定插件存放目录
 call plug#begin(g:plug_dir)
 " 在此处列出你需要的插件，格式为：Plug '用户名/仓库名'
+Plug 'yianwillis/vimcdoc'            "汉化文档
 Plug 'lilydjwg/fcitx.vim'         "自动切换中文输入法软件
 Plug 'tpope/vim-fugitive'              " Git 集成工具
 Plug 'ap/vim-buftabline'            " 标签页工具
@@ -22,16 +23,20 @@ Plug 'neoclide/coc.nvim',{'do':'npm ci'}
 " 引号等配对的插件
 Plug 'Raimondi/delimitMate'
 "文件树插件
-Plug 'lambdalisue/fern.vim'
-Plug 'lambdalisue/nerdfont.vim' "图标
-Plug 'lambdalisue/fern-renderer-nerdfont.vim'
-Plug 'lambdalisue/fern-git-status.vim'  "git
+Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+"美化状态栏
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_theme='ayu_dark'
 "以上都是有关于fern的插件
 "插件列表结束
 call plug#end()
 
 " 设置颜色主题
-colorscheme nightfly
+silent! colorscheme nightfly
 
 
 " ==================== coc.nvim 基础设置 ====================
