@@ -35,3 +35,4 @@ nnoremap <Leader>x :bn<bar>bd #<cr>
 
 " 打开 / 关闭的快捷键（推荐用 Ctrl+n）
 nnoremap <Leader>e :NERDTreeFind <CR>
+

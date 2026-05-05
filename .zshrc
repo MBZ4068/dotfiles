@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 
 # Start configuration added by Zim Framework install {{{
 
@@ -155,8 +162,6 @@ setopt CORRECT_ALL
 # --- 提示符美化（极简风格）---
 # 显示格式：[用户@主机 当前目录]$
 # 普通用户显示 $，root 用户显示 #
-autoload -Uz colors && colors
-PROMPT="%{$fg[green]%}%n@%m%{$reset_color%} %{$fg[blue]%}%~%{$reset_color%} %# "
 
 # --- 别名（可选）---
 alias ls='ls --color=auto'
@@ -175,29 +180,30 @@ bindkey -M vicmd '?' history-incremental-search-backward
 # - 插入模式：绿色 [插入] + 竖线光标
 # - 命令模式：红色 [命令] + 方块光标
 
-# 定义模式显示更新函数
-function zle-keymap-select {
-    if [[ $KEYMAP == vicmd ]]; then
-        # 命令模式：红色提示 + 方块光标
-        echo -ne '\e[2 q'
-        PROMPT="%{$fg[red]%}[N]%{$reset_color%} [%n@%m %1~]%# "
-    else
-        # 插入模式：绿色提示 + 竖线光标
-        echo -ne '\e[6 q'
-        PROMPT="%{$fg[green]%}[I]%{$reset_color%} [%n@%m %1~]%# "
-    fi
-    zle reset-prompt
-}
 
-# 确保每次命令行初始化时也刷新一次
-function zle-line-init {
-    zle-keymap-select
-}
-
-# 注册钩子函数
-zle -N zle-keymap-select
-zle -N zle-line-init
-
+## 定义模式显示更新函数
+#function zle-keymap-select {
+#    if [[ $KEYMAP == vicmd ]]; then
+#        # 命令模式：红色提示 + 方块光标
+#        echo -ne '\e[2 q'
+#        PROMPT="%{$fg[red]%}[N]%{$reset_color%} [%n@%m %1~]%# "
+#    else
+#        # 插入模式：绿色提示 + 竖线光标
+#        echo -ne '\e[6 q'
+#        PROMPT="%{$fg[green]%}[I]%{$reset_color%} [%n@%m %1~]%# "
+#    fi
+#    zle reset-prompt
+#}
+#
+## 确保每次命令行初始化时也刷新一次
+#function zle-line-init {
+#    zle-keymap-select
+#}
+#
+## 注册钩子函数
+#zle -N zle-keymap-select
+#zle -N zle-line-init
+#
 # 加载颜色支持
 autoload -Uz colors && colors
 
@@ -207,3 +213,9 @@ PROMPT="%{$fg[green]%}[插入]%{$reset_color%} [%n@%m %1~]%# "
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 #美化插件
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#设定wiki的语言环境变量
+export wiki_lang=""
