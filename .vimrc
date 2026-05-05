@@ -58,7 +58,7 @@ endfunction
 " ==================== 指定需要自动安装的语言扩展 ====================
 let g:coc_global_extensions = [
       \ 'coc-clangd',
-      \ 'coc-pyright',
+      \ 'coc-jedi',
       \ 'coc-sumneko-lua',
       \ 'coc-sh',
       \ 'coc-vimlsp'

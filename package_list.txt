@@ -16,7 +16,6 @@ autojump
 nodejs 
 yarn
 clang 
-pyright 
 lua-language-server
 bash-language-server
 npm
