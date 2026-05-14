@@ -169,46 +169,8 @@ alias ll='ls -lh'
 alias la='ls -lAh'
 alias grep='grep --color=auto'
 
-# --- Vi 模式 (等价于 set -o vi) ---
-bindkey -v                    # 启用 Vi 模式
-# 映射 "jj" 和 "JJ" 从插入模式退出到命令模式
-bindkey -M viins 'jj' vi-cmd-mode
-bindkey -M viins 'JJ' vi-cmd-mode
-bindkey -M vicmd '/' history-incremental-search-forward
-bindkey -M vicmd '?' history-incremental-search-backward
-
-# - 插入模式：绿色 [插入] + 竖线光标
-# - 命令模式：红色 [命令] + 方块光标
-
-
-## 定义模式显示更新函数
-#function zle-keymap-select {
-#    if [[ $KEYMAP == vicmd ]]; then
-#        # 命令模式：红色提示 + 方块光标
-#        echo -ne '\e[2 q'
-#        PROMPT="%{$fg[red]%}[N]%{$reset_color%} [%n@%m %1~]%# "
-#    else
-#        # 插入模式：绿色提示 + 竖线光标
-#        echo -ne '\e[6 q'
-#        PROMPT="%{$fg[green]%}[I]%{$reset_color%} [%n@%m %1~]%# "
-#    fi
-#    zle reset-prompt
-#}
-#
-## 确保每次命令行初始化时也刷新一次
-#function zle-line-init {
-#    zle-keymap-select
-#}
-#
-## 注册钩子函数
-#zle -N zle-keymap-select
-#zle -N zle-line-init
-#
 # 加载颜色支持
 autoload -Uz colors && colors
-
-# 默认先设置为插入模式的提示符（防止初次启动无显示）
-PROMPT="%{$fg[green]%}[插入]%{$reset_color%} [%n@%m %1~]%# "
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
