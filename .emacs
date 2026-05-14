@@ -6,26 +6,20 @@
 (setq inhibit-startup-screen t)
 
 
-(require 'package)  ;; 1. 引入package模块
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")  ;; 2. 添加MELPA源
                          ("gnu" . "https://elpa.gnu.org/packages/")))
+(setq package-check-signature nil)
 
-(unless package-archive-contents  ;; 3. 如果本地还没有包索引，则刷新
-  (package-refresh-contents))
+(require 'package)  ;; 1. 引入package模块
+
+(unless (bound-and-true-p package--initalized))
+
+(package-initialize)
 
 ;; 以下是你原有的use-package设置
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
 
-(unless (bound-and-true-p package--initalized)
-  )
-
-(unless package-archive-contents
-  (package-refresh-contents))
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
 
 (setq use-package-always-ensure t
       use-package-always-defer t
@@ -44,3 +38,15 @@
 	sml/theme 'respectful)
    (sml/setup))
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
