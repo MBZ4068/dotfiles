@@ -24,11 +24,13 @@ set wrap
 set splitright 
 set splitbelow
 
+" 光标所在行列高亮
+set cursorline
+set cursorcolumn
+
 " 括号匹配（短暂跳转并显示匹配括号）
 set showmatch
 
-" 备份文件（原文件同目录下生成 filename~）
-set backup
 
 " 搜索不区分大小写（混合大写字母时自动区分）
 set ignorecase

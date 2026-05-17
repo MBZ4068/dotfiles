@@ -138,7 +138,26 @@ require("lazy").setup({
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
 	},
-	-- 在插件管理器的配置中
+	{
+  "ibhagwan/fzf-lua",
+  -- optional for icon support
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  -- or if using mini.icons/mini.nvim
+  -- dependencies = { "nvim-mini/mini.icons" },
+  ---@module "fzf-lua"
+  ---@diagnostic disable: missing-fields
+ opts = {}
+  ---@diagnostic enable: missing-fields
+},
+{
+  "ap/vim-buftabline",
+  lazy = false,  -- 启动即加载
+  config = function()
+    -- 始终显示标签栏
+    vim.opt.showtabline = 2
+  end,
+}	-- 在插件管理器的配置中
+
 },
 {
   -- 全局 lazy 配置（可选）
@@ -156,3 +175,4 @@ require("lazy").setup({
 
 -- 3. 可选：设置全局快捷键（原配置没有，但可以根据需要添加）
  vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree" })
+

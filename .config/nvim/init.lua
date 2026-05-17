@@ -22,4 +22,7 @@ require("plugins.lsp")
 require("plugins.cmp")
 
 
+require("plugins.fzf-lua")
+require("plugins.nvim-tree")
+
 

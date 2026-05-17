@@ -45,3 +45,6 @@ keymap.set("n","<Leader>wo","<C-w>o")
 keymap.set("n","<leader>nh",":nohl<CR>")
 
 
+-- 切换buftab
+keymap.set('n','<Leader><Tab>',":bnext<CR>",{silent = true , desc = '下一个Buffer'})
+

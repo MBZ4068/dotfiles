@@ -3,13 +3,13 @@
 --默认主题
 vim.cmd[[colorscheme tokyonight-moon]]
 
+
+
 -- 行号
 vim.opt.number = true          -- 显示绝对行号
 vim.opt.relativenumber = true -- 相对行号
 
--- 语法高亮（Neovim 默认开启，此行可省略，保留也不影响）
-vim.cmd('syntax off')
---vim.cmd('filetype plugin indent on')
+vim.cmd('filetype plugin indent on')
 
 -- 移动时保留上下文
 vim.opt.scrolloff = 5
@@ -23,6 +23,9 @@ vim.opt.expandtab = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+
 -- 折行时不截断单词
 vim.opt.linebreak = true
 vim.opt.wrap = true
@@ -31,7 +34,7 @@ vim.opt.wrap = true
 vim.opt.showmatch = true
 
 -- 启用备份文件（生成 filename~）
-vim.opt.backup = true
+--vim.opt.backup = true
 
 -- 搜索：智能忽略大小写、高亮、即时搜索
 vim.opt.ignorecase = true
