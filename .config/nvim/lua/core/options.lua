@@ -8,8 +8,8 @@ vim.opt.number = true          -- 显示绝对行号
 vim.opt.relativenumber = true -- 相对行号
 
 -- 语法高亮（Neovim 默认开启，此行可省略，保留也不影响）
-vim.cmd('syntax on')
-vim.cmd('filetype plugin indent on')
+vim.cmd('syntax off')
+--vim.cmd('filetype plugin indent on')
 
 -- 移动时保留上下文
 vim.opt.scrolloff = 5
@@ -48,3 +48,4 @@ vim.opt.mouse = 'a'
 vim.diagnostic.config({
   virtual_lines ={ only_current_line =  true},
 })
+vim.cmd("autocmd BufNewFile *.cmdn 0r ~/.config/nvim/note_template.cmdn")

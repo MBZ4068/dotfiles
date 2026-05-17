@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- 2. 插件配置列表（原 packer 的 use 部分）
 require("lazy").setup({
+
   -- 主题（建议立即加载，否则启动时无主题）
   { "folke/tokyonight.nvim",
     lazy = false,        -- 启动时立即加载
@@ -23,7 +24,19 @@ require("lazy").setup({
       vim.cmd.colorscheme("tokyonight")
     end
   },
-  -- 状态栏 lualine
+	{
+	  "nvim-treesitter/nvim-treesitter",
+	  lazy = false,
+	  build = ':TSUpdate',
+	  config = function()
+		require('nvim-treesitter').install { 'rust', 'lua', 'python','vim'}
+	end
+	},
+
+  { "HiPhish/rainbow-delimiters.nvim",
+  	lazy = false
+  },
+
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "kyazdani42/nvim-web-devicons" }, -- 原 requires
@@ -32,12 +45,16 @@ require("lazy").setup({
       require("lualine").setup()
     end
   },
+
   -- 文件树 nvim-tree
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    cmd = "NvimTreeToggle", -- 按需加载：执行命令时才加载
+	lazy=false,
     config = function()
+		vim.g.loaded_netrw =1
+		vim.g.loaded_netrwPlugin=1
+
       require("nvim-tree").setup()
     end
   },
@@ -50,6 +67,7 @@ require("lazy").setup({
       require("mason").setup()
     end
   },
+
   { "williamboman/mason-lspconfig.nvim",
     dependencies = { "williamboman/mason.nvim" },
     config = function()
@@ -80,14 +98,7 @@ require("lazy").setup({
   -- 报错显示（原配置中已带有 opts = {}）
 	{
 	  "folke/trouble.nvim",
-	  opts ={
-		  modes={
-		  	diagnostics={
-				auto_open = true,  -- 出现诊断时自动打开
-    			auto_close = true, -- 无诊断时自动关闭
-		  		},
-			},
-  	  }, -- for default options, refer to the configuration section for custom setup.
+	  opts ={}, -- for default options, refer to the configuration section for custom setup.
 	  event="VeryLazy",
 	  keys = {
 		{
@@ -126,10 +137,10 @@ require("lazy").setup({
     config = true
     -- use opts = {} for passing setup options
     -- this is equivalent to setup({}) function
-	}
-
- -- 注意：原 packer.nvim 本身不再需要，lazy.nvim 已替代
-}, {
+	},
+	-- 在插件管理器的配置中
+},
+{
   -- 全局 lazy 配置（可选）
   defaults = {
     lazy = true,          -- 未显式指定 lazy 的插件默认懒加载
@@ -144,4 +155,4 @@ require("lazy").setup({
 })
 
 -- 3. 可选：设置全局快捷键（原配置没有，但可以根据需要添加）
--- vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree" })
+ vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", { desc = "Toggle file tree" })

@@ -181,3 +181,4 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 #设定wiki的语言环境变量
 export wiki_lang=""
+

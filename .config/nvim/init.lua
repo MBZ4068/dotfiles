@@ -11,13 +11,13 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require("plugins.plugins-setup")
 require("core.options")
 require("core.keymap")
-	
+require("plugins.plugins-setup")
+
 -- 插件
-require("plugins.lualine")
-require("plugins.nvim-tree")
+require("plugins.delimiters")
+---- 
 require("plugins.lsp")
 require("plugins.cmp")
 

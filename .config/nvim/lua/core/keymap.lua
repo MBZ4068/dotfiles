@@ -45,6 +45,3 @@ keymap.set("n","<Leader>wo","<C-w>o")
 keymap.set("n","<leader>nh",":nohl<CR>")
 
 
--- ------------------插件--------------------- --
--- nvim-tree
-keymap.set("n","<leader>e",":NvimTreeToggle<CR>")
