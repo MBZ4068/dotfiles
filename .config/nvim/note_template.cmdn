@@ -1,0 +1,40 @@
+
+/-/命令名
+*note* 
+
+-说明~
+	
+	略
+
+-标签~
+/-/功能分组
+/-/- 文件操作：ls cp mv rm mkdir touch ln
+/-/- 文本处理：grep sed awk cat less head tail sort wc diff
+/-/- 权限：chmod chown chgrp
+/-/- 进程：ps top kill pkill jobs bg fg
+/-/- 系统信息：uname free df du date uptime
+/-/- 网络：ping curl wget ssh scp rsync netstat ss
+/-/- 压缩：tar gzip zip unzip
+/-/- 包管理：apt yum dnf pacman
+/-/- 用户：useradd passwd id whoami
+/-/- 磁盘：fdisk mount df lsblk
+/-/- 帮助：man info whatis
+	
+	/-/第一行为必须标签
+	#官方源 aur CN仓库 #功能分组 #CLI TUI GUI 
+
+	/-/第二行是个性化标签
+	#个性化标签
+
+-用法~
+
+	略
+
+-备注~
+
+	略
+
+/-/最后请用 `:g|/-/||d` 删除模板注释
+
+vim:ft=help:
+
