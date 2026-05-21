@@ -117,9 +117,9 @@ source ${ZIM_HOME}/init.zsh
 # --- 基础选项 ---
 # 设置历史记录
 # 加载插件
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/autojump/autojump.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source /usr/share/autojump/autojump.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export EDITOR=vim
 HISTSIZE=5000                # 内存中保留的历史命令数
 SAVEHIST=5000                # 保存到文件的历史命令数
@@ -181,4 +181,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 #设定wiki的语言环境变量
 export wiki_lang=""
+
+# 设置一些环境变量
+QT_IM_MODULES="wayland;fcitx"
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
 

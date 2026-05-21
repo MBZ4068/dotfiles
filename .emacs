@@ -12,7 +12,7 @@
 
 (require 'package)  ;; 1. 引入package模块
 
-(unless (bound-and-true-p package--initalized))
+(unless (bound-and-true-p package--initialized))
 
 (package-initialize)
 
@@ -27,10 +27,8 @@
       use-package-expand-minimally t
       use-package-verbose t)
 (require 'use-package)
-
-;;video 15
-(use-package gruvbox-theme
-  :init (load-theme 'gruvbox-dark-soft t))
+(use-package doom-themes
+  :init (load-theme 'doom-one t))
 
 (use-package smart-mode-line
   :init
@@ -43,10 +41,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages nil))
+ '(package-selected-packages '(doom-themes gruvbox-theme smart-mode-line)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
