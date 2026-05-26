@@ -34,6 +34,10 @@ set splitbelow
 set cursorline
 set cursorcolumn
 
+" 调暗光标行列高亮
+highlight CursorLine   cterm=NONE ctermbg=240
+highlight CursorColumn cterm=NONE ctermbg=240
+
 " 括号匹配（短暂跳转并显示匹配括号）
 set showmatch
 

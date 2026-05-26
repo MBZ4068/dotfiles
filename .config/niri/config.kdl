@@ -304,6 +304,65 @@ animations {
 
     // 将所有动画减慢此系数。小于 1 的值会加快动画速度。
     // slowdown 3.0
+
+    // 工作区切换：轻微弹性感，比默认更丝滑
+    workspace-switch {
+        spring damping-ratio=0.8 stiffness=700 epsilon=0.0001
+    }
+
+    // 窗口打开：适度延长 + cubic 曲线，比默认 expo 更柔和
+    window-open {
+        duration-ms 200
+        curve "ease-out-cubic"
+    }
+
+    // 窗口关闭：比默认稍慢，让关闭更从容
+    window-close {
+        duration-ms 180
+        curve "ease-out-cubic"
+    }
+
+    // 视图水平移动（跟随窗口大小变化时同步使用此配置）
+    horizontal-view-movement {
+        spring damping-ratio=0.8 stiffness=700 epsilon=0.0001
+    }
+
+    // 窗口在列中上下移动
+    window-movement {
+        spring damping-ratio=0.8 stiffness=700 epsilon=0.0001
+    }
+
+    // 窗口大小调整：与前两者保持同步，确保动画一致
+    window-resize {
+        spring damping-ratio=0.8 stiffness=700 epsilon=0.0001
+    }
+
+    // 通知弹出/关闭：默认欠阻尼已不错，保持
+    config-notification-open-close {
+        spring damping-ratio=0.6 stiffness=1000 epsilon=0.001
+    }
+
+    // 退出确认对话框
+    exit-confirmation-open-close {
+        spring damping-ratio=0.6 stiffness=500 epsilon=0.01
+    }
+
+    // 截图 UI 淡入：稍延长
+    screenshot-ui-open {
+        duration-ms 200
+        curve "ease-out-cubic"
+    }
+
+    // 概览缩放：降低刚度，缩放过渡更柔
+    overview-open-close {
+        spring damping-ratio=0.8 stiffness=600 epsilon=0.0001
+    }
+
+    // 最近窗口切换器关闭
+    recent-windows-close {
+        spring damping-ratio=0.8 stiffness=700 epsilon=0.001
+    }
+
 }
 
 // 窗口规则允许你调整单个窗口的行为。
