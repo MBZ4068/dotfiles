@@ -11,8 +11,8 @@ keymap.set({"i","v"}, "jk", "<Esc>")
 
 -- ------------视觉模式-------------- --
 -- 选定行移动
-keymap.set("v","J",":m '>+1<CR>gv=gv") 
-keymap.set("v","K",":m '<-2<CR>gv=gv") 
+keymap.set("v","J",":m '>+1<CR>gv=gv")
+keymap.set("v","K",":m '<-2<CR>gv=gv")
 
 -- ------------普通模式-------------- --
 -- 反向缩进：Shift+Tab 向左缩进
@@ -51,6 +51,11 @@ keymap.set("n","<S-Tab>","<<",{desc = "反向缩进"})
 -- 切换buftab
 keymap.set('n','<Leader>b<Tab>',":bnext<CR>",{silent = true , desc = '下一个 Buffer'})
 keymap.set('n','<Leader>bq',":bd<CR>",{silent = true, desc = '删除当前 Buffer'})
+
+-- 诊断浮动显示
+keymap.set("n","<leader>df",function()
+	vim.diagnostic.open_float({ border ="rounded"})
+end,{ desc = "诊断浮动" })
 
 -- ============================================
 -- LSP / 代码导航（fzf-lua 浮动窗口）

@@ -19,6 +19,7 @@
 /-/- 用户：useradd passwd id whoami
 /-/- 磁盘：fdisk mount df lsblk
 /-/- 帮助：man info whatis
+/-/- 设备: scrcpy
 	
 	/-/第一行为必须标签
 	#官方源 aur CN仓库 #功能分组 #CLI TUI GUI 

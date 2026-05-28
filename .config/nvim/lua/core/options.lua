@@ -48,7 +48,5 @@ vim.opt.clipboard = 'unnamedplus'
 -- 鼠标支持
 vim.opt.mouse = 'a'
 -- 报错显示
-vim.diagnostic.config({
-  virtual_lines ={ only_current_line =  true},
-})
+
 vim.cmd("autocmd BufNewFile *.cmdn 0r ~/.config/nvim/note_template.cmdn")
