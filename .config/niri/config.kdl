@@ -108,7 +108,7 @@ output "HDMI-A-1" {
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     // 设置窗口之间的间隙（逻辑像素）。
-    gaps 10 
+    gaps 5 
 
     // 切换焦点时何时将列居中，选项有：
     // - "never"（默认行为），聚焦离屏列时会将列保持在屏幕左边缘或右边缘。
@@ -187,7 +187,7 @@ layout {
         // 如果启用边框，你可能希望禁用焦点环。
         //off
 
-        width 4
+        width 2
     	active-gradient from="#5AEAFF" to="#6FF2DC" angle=45 in="oklab" relative-to="window"
 
         // 非活动显示器上的焦点环颜色。

@@ -120,7 +120,7 @@ source ${ZIM_HOME}/init.zsh
 #source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 #source /usr/share/autojump/autojump.zsh
 #source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-export EDITOR=vim
+export EDITOR=nvim
 HISTSIZE=5000                # 内存中保留的历史命令数
 SAVEHIST=5000                # 保存到文件的历史命令数
 HISTFILE=~/.zsh_history      # 历史文件路径
@@ -172,8 +172,9 @@ alias grep='grep --color=auto'
 # 加载颜色支持
 autoload -Uz colors && colors
 
+
 export PATH="$HOME/.cargo/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 #美化插件
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

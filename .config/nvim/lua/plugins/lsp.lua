@@ -20,7 +20,6 @@ vim.lsp.config('*',{
 	capabilities = capabilities,
 	root_markers = {'.git'},
 })
-
 vim.lsp.config('lua_ls',{
 	filetypes = { 'lua' },
 	settings={

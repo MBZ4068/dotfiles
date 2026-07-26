@@ -421,6 +421,25 @@ require("lazy").setup({
       require("nvim-dap-virtual-text").setup()
     end,
   },
+
+  -- image.nvim：终端内显示图片（Kitty 协议）
+  {
+    "3rd/image.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("image").setup({
+        backend = "kitty",
+        integrations = {
+          markdown = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            download_remote_images = true,
+            only_render_image_at_cursor = false,
+          },
+        },
+      })
+    end,
+  },
 },
 	-- 在插件管理器的配置中
 {
