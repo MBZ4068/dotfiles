@@ -1,28 +1,57 @@
--- ~/.config/nvim/init.lua 最开头部分
+-- ============================================================================
+-- Neovim 配置入口文件（init.lua）
+-- ============================================================================
+-- 这是 nvim 启动时第一个被加载的配置文件，它只负责三件事：
+--   1. 自动安装 lazy.nvim 插件管理器（仅首次启动时需要联网）
+--   2. 加载 core/ 目录下的基础配置（选项、键位、自动命令）
+--   3. 让 lazy.nvim 加载 lua/plugins/ 目录下的所有插件配置
+--
+-- 日常维护提示：
+--   · 想改编辑器基础行为   -> 看 lua/core/options.lua
+--   · 想改快捷键           -> 看 lua/core/keymap.lua
+--   · 想加 / 删插件        -> 看 lua/plugins/ 目录（每个文件对应一类插件）
+-- ============================================================================
+
+-- ----------------------------------------------------------------------------
+-- 1. 安装 lazy.nvim（如果还没有安装）
+--    lazy.nvim 是目前最主流的 nvim 插件管理器，负责下载、更新、加载插件。
+-- ----------------------------------------------------------------------------
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
-    "--filter=blob:none",
+    "--filter=blob:none",          -- 只拉取最新快照，加快克隆速度
     "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- 使用稳定分支
+    "--branch=stable",              -- 使用稳定分支
     lazypath,
   })
 end
-vim.opt.rtp:prepend(lazypath)
-require("core.options")
-require("core.keymap")
-require("plugins.plugins-setup")
+vim.opt.rtp:prepend(lazypath)       -- 把 lazy.nvim 加入运行时路径，才能 require 它
 
--- 插件
-require("plugins.delimiters")
----- 
-require("plugins.lsp")
-require("plugins.cmp")
+-- ----------------------------------------------------------------------------
+-- 2. 加载核心配置（顺序不要乱：先选项，再键位，最后自动命令）
+-- ----------------------------------------------------------------------------
+require("core.options")   -- 编辑器基础选项（行号、缩进、搜索等）
+require("core.keymap")    -- 全局快捷键
+require("core.autocmds")  -- 自动命令（如新建文件时插入模板）
 
-
-require("plugins.fzf-lua")
-require("plugins.nvim-tree")
-
-
+-- ----------------------------------------------------------------------------
+-- 3. 加载所有插件
+--    lazy.setup("plugins") 会扫描 lua/plugins/ 目录下的每个 .lua 文件，
+--    每个文件用 `return { ... }` 返回一个插件列表。
+--    因此：加插件 = 在对应分类文件里加一个 { ... } 块；
+--          删插件 = 删掉那个 { ... } 块。
+-- ----------------------------------------------------------------------------
+require("lazy").setup("plugins", {
+  install = {
+    -- 安装 / 更新插件期间使用的配色方案（避免安装过程无主题而报错）
+    colorscheme = { "tokyonight" },
+  },
+  checker = {
+    enabled = true,                 -- 定期自动检查插件是否有更新
+    interval = 24 * 60 * 60 * 1000, -- 检查间隔：24 小时（单位毫秒）
+  },
+})
+-- 用来测试nvim随机卡顿的脚本 找到问题后应该删掉
+require("debug.lag").start()
