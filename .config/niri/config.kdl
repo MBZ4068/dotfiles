@@ -108,7 +108,7 @@ output "HDMI-A-1" {
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     // 设置窗口之间的间隙（逻辑像素）。
-    gaps 5 
+    gaps 0 
 
     // 切换焦点时何时将列居中，选项有：
     // - "never"（默认行为），聚焦离屏列时会将列保持在屏幕左边缘或右边缘。
@@ -209,7 +209,7 @@ layout {
     // 你可以为窗口启用阴影。
     shadow {
         // 取消注释下一行以启用阴影。
-         on
+        // on
 
         // 默认情况下，阴影仅绘制在窗口周围，而不是窗口后面。
         // 取消注释此设置可使阴影绘制在窗口后面。
@@ -255,20 +255,20 @@ layout {
 spawn-at-startup "waybar"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 spawn-at-startup "mako"
-spawn-at-startup "swww-deamon"
+//spawn-at-startup "swww-deamon"
 // 启动时恢复 Waypaper 设置的壁纸
-spawn-at-startup "waypaper" "--restore"
+//spawn-at-startup "waypaper" "--restore"
 
-layer-rule {
-    match namespace="^(swww-daemon|wallpaper)$"
-    place-within-backdrop true
-}
+//layer-rule {
+//    match namespace="^(swww-daemon|wallpaper)$"
+//    place-within-backdrop true
+//}
 // 要运行 shell 命令（包含变量、管道等），请使用 spawn-sh-at-startup：
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
 
 hotkey-overlay {
     // 取消注释此行以禁用启动时的“重要热键”弹窗。
-    // skip-at-startup
+    skip-at-startup
 }
 
 // 取消注释此行，如果可能，要求客户端省略其客户端装饰。
@@ -286,6 +286,8 @@ environment {
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     // 针对较老旧的 GTK 应用，禁用客户端装饰
     GTK_CSD "0"
+    // 让 Firefox 使用 Wayland 原生模式（而非 XWayland），避免切换/动画经过时掉帧
+    MOZ_ENABLE_WAYLAND "1"
 }
 // 你可以更改截图保存的路径。
 // 开头的 ~ 将扩展为用户主目录。
@@ -303,7 +305,7 @@ animations {
     // off
 
     // 将所有动画减慢此系数。小于 1 的值会加快动画速度。
-    // slowdown 3.0
+     slowdown 1.5
 
     // 工作区切换：轻微弹性感，比默认更丝滑
     workspace-switch {
@@ -400,8 +402,9 @@ window-rule {
 
 // 示例：为所有窗口启用圆角。
 // （此示例规则已通过前面的 "/-" 注释掉）
-window-rule {
+/-window-rule {
     geometry-corner-radius 12
+
     clip-to-geometry true
 }
 
@@ -660,4 +663,11 @@ binds {
 
     // 关闭显示器电源。要重新打开它们，请执行任何输入操作，例如移动鼠标或按其他键。
     Mod+Shift+P { power-off-monitors; }
+}
+
+recent-windows {
+    binds {
+        Mod+Tab { next-window; }
+        Mod+Shift+Tab { previous-window; }
+    }
 }

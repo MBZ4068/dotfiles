@@ -1,94 +1,88 @@
 {
-	"include": [
-		"~/.config/waybar/modules/*.jsonc",
-		"~/.config/waybar/modules/custom/*.jsonc",
-		"~/.config/waybar/modules/hyprland/*.jsonc"
+	// 底部横栏，极窄，贴边无缝隙
+	"layer": "top",
+	"position": "bottom",
+	"mode": "dock",
+	"height": 30,
+	"spacing": 0,
 
-		// Modules that are not included by default:
-		// "~/.config/waybar/modules/extras/*.jsonc"
-	],
-
-	/*------------
-	    Layout
-	------------*/
-
+	// 左：工作区
 	"modules-left": [
-		"custom/user",
-		"custom/left_div#1",
-		"niri/workspaces",
-		"custom/right_div#1",
-		"niri/window"
+		"niri/workspaces"
 	],
+
+	// 中：时间 / 星期 / 日期
 	"modules-center": [
-		"custom/left_div#2",
-		"temperature",
-		"custom/left_div#3",
-		"memory",
-		"custom/left_div#4",
-		"cpu",
-		"custom/left_inv#1",
-		"custom/left_div#5",
-		"custom/distro",
-		"custom/right_div#2",
-		"custom/right_inv#1",
-		"idle_inhibitor",
 		"clock#time",
-		"custom/right_div#3",
-		"clock#date",
-		"custom/right_div#4",
-		"network",
-		//"custom/update",
-		"custom/right_div#5"
+		"clock#weekday",
+		"clock#date"
 	],
+
+	// 右：网络 / 温度 / CPU / GPU / 托盘
 	"modules-right": [
-		"mpris",
-		"custom/left_div#6",
-		"group/pulseaudio",
-		"custom/left_div#7",
-		"backlight",
-		"custom/left_div#8",
-		"battery",
-		"custom/left_inv#2",
+		"network",
+		"temperature",
+		"cpu",
+		"custom/gpu",
 		"tray"
 	],
-	"niri/language": {
-	 // 显示当前活动的键盘布局 (如: us, cn)
-    "format": "{}", 
-    // 也可以显示全名，例如: "format": "{}" 会显示 "English (US)"
 
-    // 🖱️ 关键功能：鼠标点击即可切换布局
-    // 注意：XKB_LAYOUT_NAME 需要替换为你Niri配置里的布局名字
-    "on-click": "niri msg action switch-to-layout XKB_LAYOUT_NAME"},
+	"niri/workspaces": {
+		"format": "{value}"
+	},
 
-	/*-------------
-	    Options
-	-------------*/
+	"clock#time": {
+		"format": "{:%H:%M}",
+		"tooltip": false
+	},
+	"clock#weekday": {
+		"format": "{:%a}",
+		"tooltip": false
+	},
+	"clock#date": {
+		"format": "{:%m-%d}",
+		"tooltip": false
+	},
 
-	// "expand-center":
-	// "expand-left":
-	// "expand-right":
-	"layer": "top",
-	// "output":
-	// "position":
-	"height": 0,
-	"width": 0,
-	"margin": 0,
-	// "margin-top":
-	// "margin-left":
-	// "margin-bottom":
-	// "margin-right":
-	// "no-center":
-	"spacing": 0,
-	// "name":
-	"mode": "dock",
-	// "start_hidden":
-	// "modifier-reset":
-	// "exclusive":
-	// "fixed-center":
-	// "passthrough":
-	// "ipc":
-	// "id":
-	"reload_style_on_change": true
-	// "on-sigusr1":
-	// "on-sigusr2":
+	"network": {
+		"interval": 5,
+		"format": "{icon}",
+		"format-ethernet": "󰀂",
+		"format-disconnected": "󰤯",
+		"format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+		"tooltip": true,
+		"tooltip-format": "{essid} {signalStrength}%"
+	},
+
+	"temperature": {
+		"thermal-zone": 1,
+		"critical-threshold": 90,
+		"interval": 5,
+		"format": "{icon} {temperatureC}°",
+		"format-critical": "{icon} {temperatureC}°",
+		"format-icons": ["", "", "", "󱃂", ""],
+		"tooltip": false
+	},
+
+	"cpu": {
+		"interval": 5,
+		"format": "󰍛 {usage}%",
+		"states": {
+			"warning": 75,
+			"critical": 90
+		},
+		"tooltip": false
+	},
+
+	"custom/gpu": {
+		"exec": "nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits | awk '{printf \"%s\", $1}'",
+		"interval": 5,
+		"format": "󰢮 {}%",
+		"tooltip": false
+	},
+
+	"tray": {
+		"icon-size": 14,
+		"spacing": 6
+	}
 }

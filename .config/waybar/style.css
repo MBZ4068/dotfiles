@@ -1,48 +1,71 @@
 @import "theme.css";
 
 * {
-	all: initial; /* Reset GTK theme */
-	color: @main-fg;
-}
-
-@import "styles/fonts.css";
-@import "styles/modules-center.css";
-@import "styles/modules-left.css";
-@import "styles/modules-right.css";
-@import "styles/states.css";
-
-.module {
-	margin-bottom: -1px;
+	font-family: "JetBrainsMono Nerd Font Mono", "Noto Sans CJK SC", sans-serif;
+	font-size: 13px;
+	min-height: 0;
+	border: none;
+	border-radius: 0;
 }
 
 #waybar {
-	background-color: @outline;
+	background-color: @crust;
+	color: @text;
 }
+
 #waybar > box {
-	margin: 4px;
-	background-color: @main-bg;
-}
-#tray{
-	
-	padding: 0 2px;
+	background-color: @crust;
+	margin: 0;
+	border-radius: 0;
+	padding: 0;
 }
 
-button {
-	border-radius: 16px;
-	min-width: 16px;
-	padding: 0 10px;
-}
-button:hover {
-	background-color: @hover-bg;
-	color: @hover-fg;
-}
-
-tooltip {
-	border: 2px solid @main-br;
-	border-radius: 10px;
-	background-color: @main-bg;
-}
-tooltip > box {
+/* 工作区（左） */
+#workspaces button {
+	background: transparent;
+	color: @subtext1;
 	padding: 0 6px;
 }
 
+#workspaces button.active,
+#workspaces button.focused {
+	color: @accent;
+}
+
+/* 时钟（中） */
+#clock {
+	padding: 0 8px;
+}
+
+#clock.time {
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#clock.weekday,
+#clock.date {
+	color: @subtext1;
+}
+
+/* 状态模块（右） */
+#network,
+#temperature,
+#cpu,
+#custom-gpu {
+	padding: 0 6px;
+}
+
+#cpu.warning,
+#temperature.warning {
+	color: @warning;
+}
+
+#cpu.critical,
+#temperature.critical {
+	color: @critical;
+}
+
+/* 托盘（最右） */
+#tray {
+	padding: 0 4px;
+}

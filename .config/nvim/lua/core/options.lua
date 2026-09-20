@@ -21,8 +21,8 @@ vim.opt.scrolloff = 5
 
 -- Tab 与缩进：宽度为 4，使用真正的制表符（不转换成空格）
 --   注意：如果你主要写 Python（严格要求空格缩进），把 expandtab 改成 true
-vim.opt.tabstop = 4       -- 一个 Tab 字符在屏幕上显示为几个空格宽
-vim.opt.shiftwidth = 4    -- 按 >> / << 自动缩进时的宽度
+vim.opt.tabstop = 2       -- 一个 Tab 字符在屏幕上显示为几个空格宽
+vim.opt.shiftwidth = 2    -- 按 >> / << 自动缩进时的宽度
 vim.opt.expandtab = false -- false = 保留 Tab 字符；true = 转成空格
 
 -- 分屏时新窗口的默认位置：右边（水平分割）和下边（垂直分割）
@@ -39,6 +39,7 @@ vim.opt.linebreak = true
 
 -- 输入右括号时，短暂高亮与之配对的左括号
 vim.opt.showmatch = true
+vim.opt.matchtime = 1
 
 -- 搜索行为
 vim.opt.ignorecase = true  -- 搜索时默认忽略大小写

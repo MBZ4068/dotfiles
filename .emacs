@@ -64,11 +64,19 @@
 (use-package macrostep
   :bind ("C-c e" . macrostep-expand))
 
-(use-package company
-  :hook (emacs-lisp-mode . company-mode)
+(use-package eglot
+  :ensure nil
+  :hook (c-mode . eglot-ensure)
   :config
-  (setq company-idle-delay 0.1        ; 停 0.1 秒就弹出候选
+  (setq eglot-autoshutdown t))
+
+(use-package company
+  :hook ((emacs-lisp-mode c-mode) . company-mode)
+  :config
+  (setq company-idle-delay 0.1		  ; 停 0.1 秒就弹出候选
         company-minimum-prefix-length 1)) ; 输 1 个字母就触发
+(setq-default tab-width 2)
+(setq c-basic-offset 2)
 
 (defun my/elisp-doc-intro ()
   (interactive)
@@ -77,9 +85,20 @@
 (defun my/elisp-doc-ref ()
   (interactive)
   (eww "https://tao-boy.github.io/elisp-zh/"))
+(defun archwiki ()
+  (interactive)
+  (eww "https://aw.lilydjwg.me/wiki/"))
+(defun archcn ()
+  (interactive)
+  (eww "https://forum.archlinuxcn.org/"))
 
 (global-set-key (kbd "C-c w e") 'my/elisp-doc-intro)  ; 入门教材
 (global-set-key (kbd "C-c w r") 'my/elisp-doc-ref)    ; 参考手册
+(global-set-key (kbd "C-c w a") 'archwiki)	      ; archwiki
+(global-set-key (kbd "C-c w c") 'archcn)	      ; arch中文论坛
+
+(with-eval-after-load 'org
+  (define-key org-mode-map (kbd  "C-c l") #'org-store-link))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -93,7 +112,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(eww-form-text ((t (:background "#282c34" :foreground "#bbc2cf" :box (:line-width (1 . 1) :color "cyan"))))))
 
 ;; ===== 本地 elisp-zh 中文手册查询（查函数中文说明）=====
 (defvar my/elisp-zh-dir (expand-file-name "~/.emacs.d/elisp-zh/docs/"))
@@ -155,6 +174,7 @@
 
 ;; 候选列表垂直显示（解决 completing-read 看不到候选的问题）
 (use-package vertico
+  :demand t
   :init (vertico-mode 1))
 
 ;; Org 美化：隐藏 =code=、*粗体* 的标记字符

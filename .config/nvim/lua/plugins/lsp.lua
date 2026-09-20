@@ -119,6 +119,7 @@ return {
     "folke/trouble.nvim",
     opts = {},            -- 用默认配置
     event = "VeryLazy",
+    cmd = "Trouble",      -- 供 :TodoTrouble（内部执行 Trouble todo）按需加载
     keys = {
       -- 切换诊断列表（全工作区报错）
       { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "切换诊断" },
