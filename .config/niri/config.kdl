@@ -145,6 +145,7 @@ layout {
     // 这样一来，niri 将围绕那些同意省略其客户端装饰的窗口绘制焦点环和边框。
     //
     // 或者，你可以使用名为 `draw-border-with-background` 的窗口规则覆盖此行为。
+		background-color "#24283b"
 
     // 你可以更改焦点环的外观。
     focus-ring {
